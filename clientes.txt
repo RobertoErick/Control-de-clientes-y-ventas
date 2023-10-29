@@ -1,0 +1,16 @@
+45781,Gerardo Reyes,calle Colima 530,Banco
+789164,Adrian Gerardo,Av. Vasconcelos 560,Fabrica
+7613345,Oscar Olvera,calle Revolucion 650,Fruteria
+78645,Alejandro Sans,calle lago de tameagua,Empresa petrolera
+45782,Andrea López,Av. Hidalgo 123,Restaurante
+1,Ana Pérez,Calzada de la Aurora 456,Ferretería
+3452,Carlos Sánchez,calle del Sol 789,Farmacia
+987,David Rodríguez,Paseo de los Pinos 234,Supermercado
+98765,Mariana Gómez,Av. Benito Juárez 456,Librería
+12345,María González,Plaza Principal 321,Salón de Belleza
+67890,José Pérez,Av. Constitución 1010,Cafetería
+3333,Eduardo Martínez,Av. Revolución 789,Gasolinera
+55555,Sofía Torres,Av. Constitución 345,Auto Lavado
+7777,Miguel Rodríguez,Calle de las Flores 234,Florería
+99999,Isabel Soto,Av. del Parque 678,Pizzería
+45789,Angela Aguilar,Chuautemoc 1034,Carpinteria
