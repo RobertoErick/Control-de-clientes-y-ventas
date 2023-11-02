@@ -115,7 +115,7 @@ public class Main {
                             tipoProducto = "Desconocido";
                             break;
                     }
-                    System.out.println("ID cliente: " + venta.getIdCliente() + ", Tipo: " + tipoProducto + ", ID producto: " + venta.getIdProducto() + ", Monto: " + venta.getMontoVenta());
+                    System.out.println("ID cliente: " + venta.getIdCliente() + ", Tipo: " + tipoProducto + ", ID producto: " + venta.getIdProducto() + ", Monto: " + venta.getMontoVenta() + ", Paquete: " + venta.getPaquete() + ", Extra: " + venta.getExtra());
                     }
                     break;
                 case 6:
@@ -148,6 +148,8 @@ public class Main {
         int tipoProducto = 0;  // Variable para el tipo de producto
         int idProducto = 0;    // Variable para el ID del producto
         float montoVenta = 0;  // Variable para el monto de la venta
+        String paquete = ""; // Declarar la variable paqueteInternet
+        String extra = "";
     
         for (Cliente cliente : clientes) {
             if (cliente.getIdCliente() == idClienteVender) {
@@ -162,31 +164,43 @@ public class Main {
                 switch (tipoProducto) {
                     case 1:
                         // Registrar venta de Teléfono
-                        int numTelefono = ingresarNumero("Ingrese el número de teléfono: "); // El numero de telefono tambien es su ID
+                        int numTelefono = ingresarNumero("Ingrese el número de teléfono: ");
                         float saldoTelefono = ingresarNumeroFloat("Ingrese el saldo del teléfono: ");
-                        cliente.venderTelefono(new Telefono(numTelefono, saldoTelefono));
-                        idProducto = numTelefono;    // El id del producto es el numero de telefono
+                        String paqueteTelefono = ingresarPaquete("Elija el paquete para el teléfono (Premium o Estándar): ");
+                        String extraTelefono = ingresarTexto("Desea agregar llamadas internacionales?(si o no): ");
+                        cliente.venderTelefono(new Telefono(numTelefono, saldoTelefono, paqueteTelefono, extraTelefono));
+                        idProducto = numTelefono;    // El id del producto es el número de teléfono
                         montoVenta = saldoTelefono;  // El monto de la venta es el saldo del teléfono
+                        paquete = paqueteTelefono;
+                        extra = extraTelefono;
                         System.out.println("Producto de teléfono vendido con éxito.");
-                    break;
+                        break;
                     case 2:
                         // Registrar venta de Cable
                         int idCable = ingresarNumero("Ingrese el ID del cable: ");
                         float saldoCable = ingresarNumeroFloat("Ingrese el saldo del cable: ");
-                        cliente.venderCable(new Cable(idCable, saldoCable));
+                        String paqueteCable = ingresarPaquete("Elija el paquete para el cable (Premium o Estándar): ");
+                        String extraCable = ingresarTexto("Desea agregar canales internacionales?(si o no): ");
+                        cliente.venderCable(new Cable(idCable, saldoCable, paqueteCable, extraCable));
                         idProducto = idCable;
                         montoVenta = saldoCable;  // El monto de la venta es el saldo del cable
+                        paquete = paqueteCable;
+                        extra = extraCable;
                         System.out.println("Producto de cable vendido con éxito.");
-                    break;
+                        break;
                     case 3:
                         // Registrar venta de Internet
                         int idInternet = ingresarNumero("Ingrese el ID de Internet: ");
                         float saldoInternet = ingresarNumeroFloat("Ingrese el saldo de Internet: ");
-                        cliente.venderInternet(new Internet(idInternet, saldoInternet));
+                        String paqueteInternet = ingresarPaquete("Elija el paquete para Internet (Premium o Estándar): ");
+                        String extraInternet = ingresarTexto("Desea agregar servicio de Streaming?(si o no): ");
+                        cliente.venderInternet(new Internet(idInternet, saldoInternet, paqueteInternet, extraInternet));
                         idProducto = idInternet;
                         montoVenta = saldoInternet;  // El monto de la venta es el saldo de Internet
+                        paquete = paqueteInternet;
+                        extra = extraInternet;
                         System.out.println("Producto de Internet vendido con éxito.");
-                    break;
+                        break;
                     default:
                         System.out.println("Opción no válida. Intente de nuevo.");
                         break;
@@ -198,8 +212,8 @@ public class Main {
             System.out.println("Cliente no encontrado.");
         } else {
             // Luego de registrar la venta, agrega la venta a la lista de ventas
-            ventas.add(new Venta(idClienteVender, tipoProducto, idProducto, montoVenta));
-    
+            ventas.add(new Venta(idClienteVender, tipoProducto, idProducto, montoVenta, paquete, extra));
+
             // Escribe las ventas en un archivo de registro de ventas
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("ventas.txt", true))) {
                 bw.write(ventas.get(ventas.size() - 1).toString());  // Agregar la última venta
@@ -208,6 +222,24 @@ public class Main {
                 e.printStackTrace();
             }
         }
+    }
+    
+    public static String ingresarPaquete(String mensaje) {
+        Scanner scanner = new Scanner(System.in);
+        String paquete = "";
+        boolean entradaValida = false;
+        
+        while (!entradaValida) {
+            System.out.print(mensaje);
+            paquete = scanner.nextLine().trim().toLowerCase(); // Leer y limpiar espacios
+            if (paquete.equals("premium") || paquete.equals("estandar")) {
+                entradaValida = true;
+            } else {
+                System.out.println("Por favor, elija 'Premium' o 'Estándar'.");
+            }
+        }
+        
+        return paquete;
     }
 
     public static int ingresarNumero(String mensaje) {

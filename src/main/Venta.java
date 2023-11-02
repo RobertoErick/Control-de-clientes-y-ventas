@@ -6,12 +6,16 @@ public class Venta {
     private int tipoProducto;  // 1: Teléfono, 2: Cable, 3: Internet
     private int idProducto;
     private float montoVenta;
+    private String paquete;
+    private String extra;
 
-    public Venta(int idCliente, int tipoProducto, int idProducto, float montoVenta) {
+    public Venta(int idCliente, int tipoProducto, int idProducto, float montoVenta, String paquete, String extra) {
         this.idCliente = idCliente;
         this.tipoProducto = tipoProducto;
         this.idProducto = idProducto;
         this.montoVenta = montoVenta;
+        this.paquete = paquete;
+        this.extra = extra;  
     }
 
     // Métodos de acceso (getters)
@@ -31,9 +35,17 @@ public class Venta {
         return montoVenta;
     }
 
+    public String getPaquete() {
+        return paquete;
+    }
+
+    public String getExtra() {
+        return extra;
+    }
+
     @Override
     public String toString() {
-        return idCliente + "," + tipoProducto + "," + idProducto + "," + montoVenta;
+        return idCliente + "," + tipoProducto + "," + idProducto + "," + montoVenta + "," + paquete + "," + extra;
     }
 
     public static Venta fromString(String s) {
@@ -42,6 +54,8 @@ public class Venta {
         int tipoProducto = Integer.parseInt(partes[1]);
         int idProducto = Integer.parseInt(partes[2]);
         float montoVenta = Float.parseFloat(partes[3]);
-        return new Venta(idCliente, tipoProducto, idProducto, montoVenta);
+        String paquete = partes[4];  // Agregar el paquete
+        String extra = partes[5]; 
+        return new Venta(idCliente, tipoProducto, idProducto, montoVenta, paquete, extra);
     }
 }
