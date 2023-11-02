@@ -21,4 +21,12 @@ public class Internet {
       return saldoInternet;
     }
 
+    public String getPaquete() {
+        return paquete;
+    }
+
+    public String getExtra() {
+        return extra;
+    }
+
 }

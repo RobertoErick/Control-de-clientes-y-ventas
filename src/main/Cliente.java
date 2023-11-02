@@ -9,9 +9,9 @@ public class Cliente {
     private String nombre;
     private String direccion;
     private String razonSocial;
-    private List<Telefono> telefonos = new ArrayList<>();
-    private List<Cable> cables = new ArrayList<>();
-    private List<Internet> internets = new ArrayList<>();
+    public List<Telefono> telefonos = new ArrayList<>();
+    public List<Cable> cables = new ArrayList<>();
+    public List<Internet> internets = new ArrayList<>();
 
     // Constructor de la clase Cliente
     public Cliente(int idCliente, String nombre, String direccion, String razonSocial) {

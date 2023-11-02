@@ -22,4 +22,12 @@ public class Telefono {
     public float getSaldoTelefono() {
         return saldoTelefono;
     }
+
+    public String getPaquete() {
+        return paquete;
+    }
+
+    public String getExtra() {
+        return extra;
+    }
 }

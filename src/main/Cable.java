@@ -20,4 +20,12 @@ public class Cable {
     public float getSaldoCable() {
         return saldoCable;
     }
+
+    public String getPaquete() {
+        return paquete;
+    }
+
+    public String getExtra() {
+        return extra;
+    }
 }
